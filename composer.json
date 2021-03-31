@@ -1,0 +1,10 @@
+{
+    "name": "martijnvdb/wordpress-plugin-payhip-products",
+    "authors": [{
+        "name": "Martijn van den Bosch",
+        "email": "martijn_van_den_bosch@hotmail.com"
+    }],
+    "require": {
+        "martijnvdb/wordpress-plugin-tools": "^0.1.0"
+    }
+}
