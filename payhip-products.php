@@ -32,7 +32,7 @@ $payhip_products = PostType::create('payhip-products')
     ->setIcon('dashicons-cart')
     //->setSlug('webshop')
     ->setLabels([
-        'name' => 'Products',
+        'name' => 'Payhips Products',
         'singular_name' => 'Product',
         'add_new' => 'New product',
         'add_new_item' => 'New product',
@@ -80,31 +80,121 @@ $payhip_products_settings = SettingsPage::create('payhip-products-settings')
 
 
 add_shortcode('payhip-products', function($atts) {
-    $paypal_script_url = get_option('payhip-products-settings-script-url');
-
-    if(empty($paypal_script_url)) {
-        return '';
-    }
-
-    $output = '<script src="' . $paypal_script_url . '" type="text/javascript"></script>';
+    $output = '<script src="https://payhip.com/payhip.js" type="text/javascript"></script>';
 
     query_posts([
         'post_type' => 'payhip-products',
         'orderby' => 'date',
         'order' => 'DESC',
-        'showposts' => 1
+        'posts_per_page' => -1
     ]);
 
     if(have_posts()) {
+
+        $output .= <<<EOD
+    <style>
+        .payhip-products-container {
+            overflow: hidden;
+        }
+        .payhip-products-wrapper {
+            margin: -1em;
+            display: flex;
+            align-items: stretch;
+            align-content: stretch;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .payhip-products-container .payhip-products-item {
+            flex: 0 33.33333%;
+            padding: 1em;
+        }
+        .payhip-products-container .payhip-products-inner {
+            cursor: pointer;
+        }
+        .payhip-products-container .payhip-products-thumbnail {
+            background-color: #edf2f7;
+            background-size: cover;
+            background-position: 50%;
+            padding-bottom: 100%;
+        }
+        .payhip-products-container .payhip-products-content {
+
+        }
+        .payhip-products-container .payhip-products-content button {
+            background-color: #5a67d8;
+            color: #fff;
+            padding-left: .75rem;
+            padding-right: .75rem;
+            padding-top: .25rem;
+            padding-bottom: .25rem;
+            font-size: .875rem;
+            border-radius: .25rem;
+        }
+    </style>
+
+    <div class="payhip-products-container">
+        <div class="payhip-products-wrapper">
+EOD;
+
         while(have_posts()) {
             the_post();
 
             $product_title = get_the_title();
-            $product_image = get_the_post_thumbnail();
+            $product_image = get_the_post_thumbnail_url();
             $product_id = get_post_meta(get_the_ID(), 'payhip-products-product-id', true);
 
-            $output .= '<a href="http://payhip.com/b/' . $product_id . '" class="payhip-buy-button" data-theme="green" data-product="' . $product_id . '">Buy now</a>';
+            $output .= <<<EOD
+            <div class="payhip-products-item">
+                <div class="payhip-products-inner" data-payhip-products-id="$product_id" data-payhip-products-message="">
+                    <div class="payhip-products-thumbnail" style="background-image: url($product_image)"></div>
+                    <header class="payhip-products-header">
+                        <h3>
+                            $product_title
+                        </h3>
+                    </header>
+                    <div class="payhip-products-content">
+                        <button type="button">Buy now</button>
+                    </div>
+                </div>
+            </div>
+EOD;
+
         }
+
+            $output .= <<<EOD
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        jQuery("[data-payhip-products-id]").click(function(e) {
+            var target = e.target;
+            var element;
+
+            do {
+                if(target.getAttribute('data-payhip-products-id')) {
+                    element = target;
+                    break;
+                }
+
+                target = target.parentElement;
+
+            } while (target.parentElement)
+
+            if(!element) {
+                return;
+            }
+
+            var data = {};
+            data.product = element.getAttribute('data-payhip-products-id');
+
+            if(element.getAttribute('data-payhip-products-message')) {
+                data.message = element.getAttribute('data-payhip-products-message');
+            }
+            
+            Payhip.Checkout.open(data);
+        });
+    </script>
+EOD;
     }
 
     wp_reset_query();
