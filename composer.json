@@ -1,10 +1,25 @@
 {
     "name": "martijnvdb/wordpress-plugin-payhip-products",
+    "description": "An unofficial Payhip plugin to show an overview page with products",
+    "version": "1.0.0",
+    "type": "project",
+    "keywords": [
+        "wordpress",
+        "plugin",
+        "payhip",
+        "webshop"
+    ],
+    "homepage": "https://github.com/martijnvdb87/wordpress-plugin-payhip-products",
+    "readme": "README.md",
+    "license": "MIT",
     "authors": [{
         "name": "Martijn van den Bosch",
-        "email": "martijn_van_den_bosch@hotmail.com"
+        "email": "martijn_van_den_bosch@hotmail.com",
+        "homepage": "https://martijnvandenbosch.com",
+        "role": "Developer"
     }],
     "require": {
-        "martijnvdb/wordpress-plugin-tools": "^0.1.0"
+        "martijnvdb/wordpress-plugin-tools": "^0.1.0",
+        "twig/twig": "^3.3"
     }
 }

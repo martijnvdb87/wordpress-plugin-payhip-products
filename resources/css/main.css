@@ -1,0 +1,91 @@
+#payhip-products {
+    overflow: hidden;
+}
+
+#payhip-products .payhip-products-wrapper {
+    margin: -1rem;
+    display: flex;
+    align-items: stretch;
+    align-content: stretch;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#payhip-products .payhip-products-item {
+    flex: 100%;
+    padding: 1rem 1rem 3rem 1rem;
+    border-bottom: 1px solid #edf2f7;
+    margin-bottom: 2rem;
+}
+
+#payhip-products .payhip-products-inner {
+    margin-bottom: 0px;
+}
+
+#payhip-products .payhip-products-content {
+    min-height: 7.3rem;
+    margin: 0px;
+}
+
+#payhip-products header {
+    min-height: 3.6rem;
+}
+
+#payhip-products h2 {
+    font-size: 1.2rem;
+    margin: 0px;
+    margin-top: 1.5rem;
+    line-height: 1.5;
+    font-weight: 600;
+}
+
+#payhip-products a {
+    display: inline-block;
+    text-decoration: none;
+    box-shadow: none;
+}
+
+#payhip-products .payhip-products-fullprice {
+    display: inline-block;
+    line-height: 1.6;
+    margin: 0px;
+    opacity: 0.9;
+}
+
+#payhip-products .payhip-products-currency {
+    font-size: 0.7rem;
+    margin-right: 0.25rem;
+}
+
+#payhip-products .payhip-products-thumbnail {
+    display: block;
+    background-color: #edf2f7;
+    background-size: cover;
+    background-position: 50%;
+    padding-bottom: 100%;
+    margin: 0px;
+    margin-bottom: 1rem;
+}
+
+#payhip-products .payhip-products-buynow {
+    color: #FFFFFF;
+    background-color: #38b1e5;
+    font-weight: 600;
+    font-size: .875rem;
+    border-radius: .25rem;
+    padding: 0.5rem 1rem;
+}
+
+@media (min-width:640px) {}
+
+@media (min-width:768px) {
+    #payhip-products .payhip-products-item {
+        flex: 0 50%;
+    }
+}
+
+@media (min-width: 1280px) {
+    #payhip-products .payhip-products-item {
+        flex: 0 33.33333%;
+    }
+}

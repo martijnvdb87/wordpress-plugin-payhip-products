@@ -1,0 +1,25 @@
+<div id="payhip-products">
+    <div class="payhip-products-wrapper">
+
+        {% for product in products %}
+        <div class="payhip-products-item">
+            <div class="payhip-products-inner">
+                <a href="https://payhip.com/b/{{ product.id }}" target="_blank" class="payhip-products-thumbnail" style="background-image: url('{{ product.image }}')"></a>
+                <div class="payhip-products-content">
+                    <header class="payhip-products-header">
+                        <h2>
+                            <a href="https://payhip.com/b/{{ product.id }}" target="_blank">{{ product.title }}</a>
+                        </h2>
+                    </header>
+                    <div class="payhip-products-fullprice">
+                        <span class="payhip-products-currency">{{ product.currency }}</span>
+                        <span class="payhip-products-price">{{ product.price }}</span>
+                    </div>
+                </div>
+                <button type="button" class="payhip-products-buynow" data-payhip-products-id="{{ product.id }}" data-payhip-products-message="">{{ product.buynow }}</button>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>

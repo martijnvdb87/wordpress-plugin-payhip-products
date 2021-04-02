@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bbadf5955b24bc2697171c30910698ab",
+    "content-hash": "857edf0c737ce13623b7b8bb8705d5ee",
     "packages": [
         {
             "name": "martijnvdb/wordpress-plugin-tools",
