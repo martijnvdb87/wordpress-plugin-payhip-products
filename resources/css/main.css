@@ -7,7 +7,6 @@
     display: flex;
     align-items: stretch;
     align-content: stretch;
-    justify-content: space-between;
     flex-wrap: wrap;
 }
 
